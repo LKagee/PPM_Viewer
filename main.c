@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <SDL2/SDL.h>
+#include "ppm.h"
 
 
 typedef struct {
@@ -28,6 +30,10 @@ void put_pixel(sdl* SDL, int x, int y) {
 int main( void )
 {
 	sdl SDL;
+	tokens *TOKEN;
+	ppm *PPM = (ppm*)malloc(sizeof(ppm));
+	PPM->file_ppm = fopen("test.txt", "r");
+	read_file(PPM, TOKEN);
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL.window = SDL_CreateWindow("render", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 400, SDL_WINDOW_RESIZABLE);
 	SDL_Surface* main = SDL_GetWindowSurface(SDL.window);
