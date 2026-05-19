@@ -32,7 +32,7 @@ int main( void )
 	sdl SDL;
 	tokens *TOKEN;
 	ppm *PPM = (ppm*)malloc(sizeof(ppm));
-	PPM->file_ppm = fopen("test.txt", "r");
+	PPM->file_ppm = fopen("test.ppm", "r");
 	read_file(PPM, TOKEN);
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL.window = SDL_CreateWindow("render", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 400, SDL_WINDOW_RESIZABLE);
