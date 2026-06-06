@@ -38,14 +38,14 @@ typedef struct {
  *  doing arithmatic might give unexpected results 
  */
  
-static void put_pixel(sdl* SDL, int x, int y) {
+static void put_pixel(sdl* SDL, int x, int y, vec3 color) {
 	
 	if(SDL_MUSTLOCK(SDL->surface))SDL_LockSurface(SDL->surface);
 	uint32_t* pixels = (uint32_t*)SDL->surface->pixels;
-
+	printf("\nRGB {%d, %d, %d}", color.r, color.g, color.b);
 
 	uint32_t* pixel = (uint32_t*)((uint8_t*)pixels + y*SDL->surface->pitch + x*sizeof(uint32_t)); 
-	*pixel = SDL_MapRGBA(SDL->surface->format, 0xff, 0xff, 0xff, 0xff);
+	*pixel = SDL_MapRGBA(SDL->surface->format, color.r, color.g, color.b, 0xff);
 	if(SDL_MUSTLOCK(SDL->surface))SDL_UnlockSurface(SDL->surface);
 
 }
