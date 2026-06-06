@@ -10,7 +10,6 @@ static /*__attribute__((always_inline))*/ void* read_file(ppm* PPM, tokens* toke
 	// So far, the speeds seem to be slightly faster.
 	
 	if(PPM->file_ppm == NULL) printf("error");
-	PPM->vertices = (vec3*)malloc(sizeof(vec3) * 3);
 
 	fscanf(PPM->file_ppm, "%s", PPM->header);
 	int header;
@@ -19,6 +18,7 @@ static /*__attribute__((always_inline))*/ void* read_file(ppm* PPM, tokens* toke
 		case P3: printf("Token: P3\n"); break;
 		default: ERROR("Invalid file magic number (only P3 is supported)\n"); return NULL; break;
 	}
+
 
 	// WARNING: Lots of if statements...
 
@@ -42,11 +42,13 @@ static /*__attribute__((always_inline))*/ void* read_file(ppm* PPM, tokens* toke
 	}
 
 	printf("Color Max: %d.\n", PPM->color_max);
+	PPM->vertices = (vec3*)malloc(sizeof(vec3) * PPM->image_height * PPM->image_width);
 
 	for(int i = 0; i < PPM->image_height * PPM->image_width; i++) {
 
 	if(fscanf(PPM->file_ppm, "%d %d %d", &PPM->vertices[i].r, &PPM->vertices[i].g, &PPM->vertices[i].b) != 3) {
-		ERROR("Invalid row 1 RGB data (must be 0-color_max for each RGB cell and be formatted [R] [G] [B])\n");
+		ERROR("Invalid RGB data (must be 0-color_max for each RGB cell and be formatted [R] [G] [B])\n");
+		printf("Row: %d\n", i);
 	 	return NULL;
 	}
         printf("RGB: %d %d %d\n", PPM->vertices[i].r, PPM->vertices[i].g, PPM->vertices[i].b);
