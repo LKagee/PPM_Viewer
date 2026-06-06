@@ -45,8 +45,31 @@ int main(int argc, char* argv[] )
 	
 
 */
-	render_ppm(&SDL, PPM, TOKEN);
-	SDL_Delay(1000);
+	SDL_Surface* main = SDL_GetWindowSurface(SDL.window);
+	SDL.surface = SDL_CreateRGBSurfaceWithFormat(0, 1280, 840, 32, SDL_PIXELFORMAT_RGBA8888);
+	PPM->color_ptr=0;
+
+	
+	render_ppm(&SDL, PPM);
+
+	SDL_BlitSurface(SDL.surface, 0, main, 0); // For some reason just using SDL.surface is not good enough for SDL_UpdateWindowSurface? What the shit?
+	int ret=SDL_UpdateWindowSurface(SDL.window);
+	if(ret<0) {
+		SDL_ERROR(SDL_GetError());
+		return 0;
+	   }
+	printf("\nCustom Surface W/H: %d/%d, Window Surface W/H: %d/%d", SDL.surface->w, SDL.surface->h, main->w, main->h);
+
+	while(true) {
+		SDL_Event event;
+		while(SDL_PollEvent(&event)) {
+			switch(event.type) {
+			case SDL_QUIT: {return 0; break;}
+			default: break;
+		}
+	}
+	SDL_Delay(10);
+}
 	SDL_Quit();
 	SDL_DestroyWindow(SDL.window);
 	return 0;

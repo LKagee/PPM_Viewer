@@ -3,6 +3,7 @@
 typedef struct {
 	SDL_Window *window;
 	SDL_Surface *surface;
+	int viewport_height, viewport_width;
 
 } sdl;
 
