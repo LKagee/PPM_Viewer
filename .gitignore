@@ -1,5 +1,9 @@
 debug
 main2
+main
 *.txt
 *.ppm
 *.exe
+
+!spheres.ppm
+!grid.ppm
