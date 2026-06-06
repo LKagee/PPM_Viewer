@@ -57,32 +57,70 @@ static /*__attribute__((always_inline))*/ void* read_file(ppm* PPM, tokens* toke
 	return PPM;
 
 
-//	printf("%d", header);
 }
 
-static void* render_ppm(sdl* SDL, ppm* PPM, tokens *tokenizer) {
+static void* render_ppm(sdl* SDL, ppm* PPM) {
 
-	SDL_Surface* main = SDL_GetWindowSurface(SDL->window);
-	SDL->surface = SDL_CreateRGBSurfaceWithFormat(0, 640, 400, 32, SDL_PIXELFORMAT_RGBA8888);
+	int offset = 0;
 
-
-	for(int i = 0; i < 400; i++) {
-	   for(int k = 0; k < 640; k++) {   
-	
-	   put_pixel(SDL, k, i);
-	   }
-	}
-	   SDL_BlitSurface(SDL->surface, 0, main, 0); // For some reason just using SDL.surface is not good enough for SDL_UpdateWindowSurface? What the shit?
-	   int ret=SDL_UpdateWindowSurface(SDL->window);
-	   if(ret<0) {
-		SDL_ERROR(SDL_GetError());
-		return NULL;
-	   }
-
-	   return SDL;
+	for(int y = 0; y < SDL->viewport_height; y++) {
+		int Vy = (y*PPM->image_height)/SDL->viewport_height;
 
 
+		for(int x = 0; x < SDL->viewport_width; x++) {
+			int Vx = (x*PPM->image_width)/SDL->viewport_width;
+			
+			printf("X: %d, Y: %d\n", x, y);
+			put_pixel(SDL, x, y, PPM->vertices[Vx+Vy*PPM->image_width]); 
+		}
+	} 
+/*	vec3 color = {.r=255,.g=0, .b=0};
+
+	for(int i =0; i < SDL->viewport_height; i++) {
+		for(int k =0; k < SDL->viewport_width; k++) {	
+		put_pixel(SDL, k, i, color);
+		}
+	} */
 }
+
+
+
+
+
+
+
+
+
+
+
+/*
+	printf("\nIteration: %d\n", x);
+
+	  if(x >= (((SDL->viewport_width/PPM->image_width) *3)-1)) {
+		PPM->color_ptr=3;
+ 		x = 0;
+  		y++;
+}
+  	  if(y >= SDL->viewport_height) {
+		  PPM->color_ptr =0;
+		  return SDL;
+}
+
+	  if(y < (((SDL->viewport_height/PPM->image_height) *2)-1) && (x >= (((SDL->viewport_width/PPM->image_width) *3)-1))) {
+		PPM->color_ptr=0;
+	  }
+
+	printf("Through the check: %d\n", x);
+ for(int i=x; i < x + (SDL->viewport_width/PPM->image_width); i++) {
+	printf("Color_ptr = %d\n", PPM->color_ptr);
+ 	put_pixel(SDL, i, y, PPM->vertices[PPM->color_ptr]);
+ }
+	   PPM->color_ptr++;
+	   return render_ppm(SDL, PPM, x+(SDL->viewport_width/PPM->image_width), y);
+
+
+
+} */
 
 /* int render(int x, int y, ppm* PPM, sdl* SDL, int color_ptr) {
  * if(x >= (((width/image_width) *3)-1)) {
