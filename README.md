@@ -1,4 +1,4 @@
- # &emsp;&emsp;&emsp;&emsp;&emsp;Hello World! Welcome to the RayView Wiki!
+ # &emsp;&emsp;&emsp;Hello World! Welcome to the RayView Wiki!
 
 # RayView?
 
