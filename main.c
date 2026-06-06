@@ -12,19 +12,21 @@
  
 
 
-int main( void )
+int main(int argc, char* argv[] )
 {
 	sdl SDL;
 	tokens *TOKEN;
 	ppm *PPM = (ppm*)malloc(sizeof(ppm));
-	PPM->file_ppm = fopen("test.ppm", "r");
+	PPM->file_ppm = fopen(argv[1], "r");
 	read_file(PPM, TOKEN);
 	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL.window = SDL_CreateWindow("render", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 400, SDL_WINDOW_RESIZABLE);
+	SDL.viewport_width = 1280;
+	SDL.viewport_height = 840;
+	SDL.window = SDL_CreateWindow("render", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SDL.viewport_width, SDL.viewport_height, SDL_WINDOW_RESIZABLE);
 //	SDL_Surface* main = SDL_GetWindowSurface(SDL.window);
 	if(SDL.window == NULL) return 1;
 /*
-	SDL.surface = SDL_CreateRGBSurfaceWithFormat(0, 640, 400, 32, SDL_PIXELFORMAT_RGBA8888);
+	SDL.surface = SDL_CreateRGBSurfaceWithFormat(0, 640, 420, 32, SDL_PIXELFORMAT_RGBA8888);
 
 
 	for(int i = 0; i < 400; i++) {
