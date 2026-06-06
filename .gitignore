@@ -1,4 +1,5 @@
 debug
+SDL2-devel-2.32.6-mingw
 main2
 main
 *.txt
@@ -9,3 +10,4 @@ main
 !grid.ppm
 !random.ppm
 !LICENSE.txt
+
