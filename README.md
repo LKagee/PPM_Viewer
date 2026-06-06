@@ -13,7 +13,9 @@ No restrictions are placed on the height and width a PPM file can have, simply e
 As recommended by the [Netpbm](https://netpbm.sourceforge.net/) wiki, any file extension is accepted as long as the format is correct. However be warned, only the .TXT and .PPM file extensions have been thoroughly tested as of now, but this will likely change in the near future.
 
 # Compilation
-Compiling RayView is simple. First, clone the repo.\
+
+### Linux
+Compiling RayView for linux is simple. First, clone the repo.\
 `git clone https://github.com/LKagee/RayView`
 
 Once in the 'src' directory, compile the project using gcc (Please note that while other compilers may work, only gcc has been tested for this project.\
