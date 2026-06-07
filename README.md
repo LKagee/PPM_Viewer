@@ -1,6 +1,6 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img width="300" height="300" alt="Untitled\_design\_1\_-removebg-preview" src="https://github.com/user-attachments/assets/c83234c9-99d2-4c24-aa02-97874ef1eb81" />
 
- # &emsp;&emsp;&emsp;&emsp;Hello World! Welcome to RayView!
+ # &emsp;&emsp;&emsp;&emsp;Hello World! Welcome to RayView! [![Build Status](https://travis-ci.org/LKagee/RayView.svg?branch=main)](https://app.travis-ci.com/github/LKagee/RayView/no-build?serverType=git)
 
 
 # RayView?
